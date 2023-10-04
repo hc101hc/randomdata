@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarketTool</title>
+</head>
+<body>
+    <h1>Market Assessment Tool</h1>
+    
+    <form method="POST">
+        <label for="part_number">Enter Part Number:</label>
+        <input type="text" id="part_number" name="part_number" required>
+        
+        <label for="dropdown">Select condition:</label>
+        <select id="dropdown" name="selected_option">
+            <option value="NEW">NEW</option>
+            <option value="REF">REF</option>
+        </select>
+        
+        <input type="submit" value="Submit">
+    </form>
+    
+    {% if combined_data %}
+    <h2>Part Information</h2>
+    <p>Part Number: {{ combined_data.part_number }}</p>
+    <p>Condition: {{ combined_data.condition }}</p>
+    <h4>Price & Quantity Information (Part Number & Condition)</h4>
+    <p>Current Average Listed Price: {{ combined_data.average_price }}</p>
+    <p>Current Total Listed Quantity: {{ combined_data.qty_sum }}</p>
+    <p>Average Listed Price (Last Month): {{ combined_data.average_hist_price }}</p>
+    <p>Estimated Actual Price Range: {{ combined_data.price_band }}</p>
+    <p>Price Volatility (Last Month): {{ combined_data.vol_hist_price }}</p>
+    <h4>Supply & Demand Information (Part Number)</h4>
+    <p>Total Searches (Last Month): {{ combined_data.searches }}</p>
+    <p>Average Total Quantity (Last Month): {{ combined_data.avg_total_qty }}</p>
+    <h4>Estimated Market Attractiveness (Part Number)</h4>
+    <p>Estimated Market Attractiveness: {{ combined_data.market_attractiveness_v2 }}</p>
+    <p>Estimated Most Attractive Geographical Region (UNDER DEVELOPMENT): {{ combined_data.region_with_min_doc_count }}</p>
+    <p>Test Field: {{ combined_data.test }}</p>
+    {% else %}
+    <p>Type in Part Number.</p>
+    {% endif %}
+</body>
+</html>
+
